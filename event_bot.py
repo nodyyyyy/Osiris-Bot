@@ -8,6 +8,21 @@ import pytz
 import json
 import asyncio
 import os
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run_web():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run_web)
+    t.start()
 
 # --- LOAD CONFIGURATION FROM JSON FILE ---
 TOKEN = os.getenv("TOKEN")
@@ -469,6 +484,9 @@ async def on_ready():
     print('-----------------------------------------')
 
 # --- RUN THE BOT ---
+keep_alive()
+
+
 try:
     bot.run(TOKEN)
 finally:
