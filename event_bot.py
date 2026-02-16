@@ -18,11 +18,12 @@ app = Flask(__name__)
 def home():
     return "Bot is alive!"
 
-def run_web():
+def start_web():
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
 
-threading.Thread(target=run_web).start()
+# Iniciar web server ANTES del bot
+threading.Thread(target=start_web, daemon=True).start()
 
 # --- LOAD CONFIGURATION FROM JSON FILE ---
 TOKEN = os.getenv("TOKEN")
@@ -494,6 +495,7 @@ finally:
             db_con.close()
     except Exception:
         pass
+
 
 
 
