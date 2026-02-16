@@ -484,8 +484,6 @@ async def on_ready():
     print('-----------------------------------------')
 
 # --- RUN THE BOT ---
-keep_alive()
-
 
 try:
     bot.run(TOKEN)
@@ -496,5 +494,6 @@ finally:
             db_con.close()
     except Exception:
         pass
+
 
 
