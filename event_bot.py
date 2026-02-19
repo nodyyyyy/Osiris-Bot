@@ -6,22 +6,8 @@ import aiosqlite
 import datetime
 import pytz
 import asyncio
-from flask import Flask
 import os
 import threading
-
-# ================= WEB SERVER =================
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return "Bot is alive!"
-
-def start_web():
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
-
-threading.Thread(target=start_web, daemon=True).start()
 
 # ================= CONFIG =================
 TOKEN = os.getenv("TOKEN")
